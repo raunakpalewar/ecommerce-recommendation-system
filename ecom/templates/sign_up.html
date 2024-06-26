@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add your custom styles here -->
+
+</head>
+<body>
+
+<div class="container">
+    <h2>User Registration</h2>
+
+    <form method="post" action="{% url 'signup_page' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="name" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="address" placeholder="Address" required>
+        </div>
+        <button type="submit" class="btn btn-success btn-custom">Sign Up</button>
+    </form>
+    <br>
+    <div>
+        <a href="{% url 'login_page' %}">Already have an account? Login here</a>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

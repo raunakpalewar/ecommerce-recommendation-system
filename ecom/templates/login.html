@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>User Login</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<div class="container">
+    <h2>User Login</h2>
+    <form method="post" action="{% url 'login_page' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-success btn-custom">Login</button>
+    </form>
+    <br>
+    <div>
+        <a href="{% url 'signup_page' %}">Don't have an account? Sign up here</a> <br><br>
+        <a href="{% url 'forgot_password_page' %}">Forgot your password? Reset it here</a>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

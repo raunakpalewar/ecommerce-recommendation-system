@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <script src="{% static 'js/home_script.js' %}"></script>
+    <title>Home</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <button class="float-right logout-button"><a href="{% url 'user_logout' %}">Logout</a></button>
+    <br>
+    <form id="filterForm" action="{% url 'get_content_based_recommendations' %}" method="post">
+        {% csrf_token %}
+        
+        <div class="filter-container">
+            <label for="brand" class="filter-dropdown">Brand:</label>
+            <select id="brand" name="brand"></select>
+    
+            <label for="category" class="filter-dropdown">Category:</label>
+            <select id="category" name="category"></select>
+    
+            <label for="subcategory" class="filter-dropdown">Subcategory:</label>
+            <select id="subcategory" name="subcategory"></select>
+    
+            <label for="rating" class="filter-dropdown">Rating:</label>
+            <select id="rating" name="rating"></select>
+    
+            <div class="filter-container">
+                <label for="price" class="filter-dropdown">Price Range:</label>
+                <div class="price-range-container">
+                    <span id="minPrice"></span> <!-- Display minimum price value -->
+                    <input type="range" id="price" name="price" min="0" max="8000" value="50">
+                    <span id="maxPrice"></span> <!-- Display maximum price value -->
+                </div>
+                <span id="priceValue"></span> <!-- Display selected price value -->
+            </div>
+        </div>
+    
+        <button type="submit">Submit</button>
+    </form>
+    <div class="d4">    
+        <button type="button" class="b2"><a href="{% url 'get_item_based_recommendations' %}">Get Recommendations</a></button>
+    </div>
+
+
+    <div id="result">
+    {% for item in response %}
+    <div style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+        <h2>{{ item.title }}</h2>
+        <p><strong>Category:</strong> {{ item.category }}</p>
+        <p><strong>Brand:</strong> {{ item.brand }}</p>
+        <p><strong>Description:</strong> {{ item.description }}</p>
+        <p><strong>Discount:</strong> {{ item.discount }}</p>
+        <p><strong>Actual Price:</strong> ${{ item.actual_price }}</p>
+        <p><strong>Selling Price:</strong> ${{ item.selling_price }}</p>
+        <p><strong>Rating:</strong> {{ item.average_rating }}</p>
+        <p><strong>Details:</strong> {{ item.product_details }}</p>
+        <p><strong>Images:</strong></p>
+        <!-- <div>
+            {% for image in item.images %}
+                <img src="{{ image }}" alt="Product Image" style="max-width: 100px; margin-right: 5px;">
+            {% endfor %}
+        </div> -->
+        <p><strong>Availability:</strong> {% if item.out_of_stock %}Out of Stock{% else %}In Stock{% endif %}</p>
+        <p><strong>Seller:</strong> {{ item.seller }}</p>
+        <p><a href="{{ item.url }}" target="_blank">View Product</a></p>
+        <button><a href="{% url 'buy_product' %}?pid={{ item.pid }}">Buy Now</a></button>
+    </div>
+{% endfor %}
+</div>
+    {% if answer %}
+    <div class="d2">
+
+    {% for key, value in answer.items %}
+        <p><strong>{{ key }}:</strong> {{ value }}</p>
+    {% endfor %}
+    </div>
+    {% endif %}
+
+
+
+
+<div class="d3">
+    {% if recommendations.status == 'success' %}
+    <h2>Item Recommendations</h2>
+
+    {% for item in recommendations.recommendations %}
+        <div>
+            <h3>{{ item.title }}</h3>
+            <p><strong>Brand:</strong> {{ item.brand }}</p>
+            <p><strong>Category:</strong> {{ item.category }}</p>
+            <p><strong>Actual Price:</strong> {{ item.actual_price.0 }} - {{ item.actual_price.1 }}</p>
+            <p><strong>Descriptin:</strong> {{ item.discount.0 }}</p>
+            <!-- <p><strong>Images:</strong></p> -->
+            {% for image in item.images %}
+            
+                <img src="{{ image }}" alt="Product Image">
+            {% endfor %}
+            <p><strong>Rating:</strong>{{item.rating}}</p>
+            <p><strong>Discount</strong>{{ item.description }}</p>
+            <p><strong>Product Details</strong>{{item.product_details}}</p>
+            <p><strong>Seller</strong>{{item.seller}}</p>
+        </div>
+        <hr>
+    {% endfor %}
+
+{% elif recommendations.status == 'error' %}
+    <p style="color: red;">Error: {{ recommendations.error }}</p>
+
+{% else %}
+    <p style="color: red;">Unknown error occurred.</p>
+
+{% endif %}
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+body {
+    background-color: rgb(46, 58, 66);
+    color: #ecf0f1;
+    font-family: 'Arial', sans-serif;
+   
+}
+
+.float-right {
+   float: right;
+   position: relative;
+}
+
+.logout-button {
+    background-color: orange; /* Red color for logout button */
+    border: none;
+    color: #ecf0f1;
+    cursor: pointer;
+    font-size: larger;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.logout-button:hover {
+    background-color: #f8c6c1; /* Slightly darker color on hover */
+}
+
+.filter-container {
+    /* margin: 20px; */
+    display: flex;
+    
+}
+
+.filter-dropdown {
+    margin-right: 10px;
+    color: #eff8ff; /* Bright color for dropdown labels */
+    margin:2%;
+}
+
+select, input {
+    padding: 8px;
+    border: 1px solid #3498db; /* Bright color for borders */
+    background-color: #2980b9; /* Slightly darker color for background */
+    color: #ecf0f1; /* Light text color for dropdown and input */
+}
+
+#result {
+    margin-top: 20px;
+}
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    /* margin-top: 20px; */
+}
+
+.price-range-container {
+    display: flex;
+    align-items: center;
+}
+
+#minPrice,
+#maxPrice {
+    margin: 0 10px;
+}
+
+#priceValue {
+    margin-top: 40px;
+    color: greenyellow; /* Red color for selected price value */
+}
+form {
+    margin: 20px;
+}
+
+button {
+    padding: 10px;
+    background-color: #2f9740; /* Bright color for button */
+    border: none;
+    color: rgb(239, 255, 248); /* Light text color for button */
+    cursor: pointer;
+    font-size: larger;
+}
+
+button:hover {
+    background-color: #8eb929; /* Slightly darker color on hover */
+}
+
+.d2{
+    width: 80%;
+    background-color: rgb(251, 251, 142);
+    border-radius: 20px;
+    margin: 2%;
+    color: black;
+    padding: 2%;
+    align-items: center;
+}
+
+.b1{
+    background-color: orange;
+}
+
+
+.d3{
+    margin: 2%;
+    padding: 2%;
+    background-color: #d7edfb;
+    color:black;
+    border-radius: 20px solid black;
+}
+.d3:hover{
+    background-color: rgb(184, 233, 248) ;
+    color: black;
+    border-color: red,black,green,blue;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.b2{
+    background-color: rgb(179, 148, 197);
+    color: black !important;
+}
+.d4{
+    text-align: center ;
+}
